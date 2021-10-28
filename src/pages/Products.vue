@@ -8,12 +8,12 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="80">編輯</th>
+          <th width="200">分類</th>
+          <th width="300">產品名稱</th>
+          <th width="180">原價</th>
+          <th width="180">售價</th>
+          <th width="180">是否啟用</th>
+          <th width="200">編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -74,11 +74,11 @@
                 <div class="form-group">
                   <label for="image">輸入圖片網址</label>
                   <input
+                    v-model="tempProduct.imageUrl"
                     type="text"
                     class="form-control"
                     id="image"
                     placeholder="請輸入圖片連結"
-                    v-model="tempProduct.imageUrl"
                   />
                 </div>
                 <div class="form-group">
@@ -336,10 +336,12 @@ export default {
       });
     },
     uploadFile() {
-      console.log(this);
+      // console.log('this', this);
+      // 找到圖片會在的位置
       const uploadedFile = this.$refs.files.files[0];
       const vm = this;
       const formData = new FormData();
+      // file-to-upload這個name的input append uploadedFile進去
       formData.append('file-to-upload', uploadedFile);
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
       vm.status.fileUploading = true;
@@ -348,7 +350,7 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
+        // console.log('response.data', response.data);
         vm.status.fileUploading = false;
         if(response.data.success) {
           // vm.tempProduct.imageUrl = response.data.imageUrl;
