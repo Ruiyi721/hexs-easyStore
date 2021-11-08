@@ -1,6 +1,7 @@
 <template>
   <div>
     <Navbar />
+    <AlertMsg />
     
     <div class="container-fluid">
       <div class="row">
@@ -16,12 +17,14 @@
 <script>
 import Navbar from "./NavBar.vue";
 import Sidebar from "./Sidebar.vue";
+import AlertMsg from "./AlertMsg.vue";
 
 export default {
   name: 'DashBoard',
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
+    AlertMsg
   },
   created() {
     // 讀cookie
